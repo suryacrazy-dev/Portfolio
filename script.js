@@ -444,9 +444,9 @@ const mobMenu = () => {
 }
 mobMenu();
 
-// DUMMY CONTACT FORM HANDLER
+// CONTACT FORM HANDLER (uses FormSubmit)
 
-const dummyContactForm = () => {
+const contactFormHandler = () => {
     const form = document.querySelector("#contact-form");
     const successMsg = document.querySelector("#submit-success");
     const submitBtn = document.querySelector("#submit-btn");
@@ -460,16 +460,35 @@ const dummyContactForm = () => {
                 submitBtn.style.pointerEvents = "none";
             }
 
-            setTimeout(() => {
+            const formData = new FormData(form);
+
+            fetch("https://formsubmit.co/ajax/suryasurya2882002@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Accept': 'application/json'
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
                 form.style.display = "none";
                 if (successMsg) {
                     successMsg.style.display = "flex";
                 }
-            }, 600);
+            })
+            .catch(error => {
+                console.log(error);
+                if (submitBtn) {
+                    submitBtn.innerText = "Send Message";
+                    submitBtn.style.opacity = "1";
+                    submitBtn.style.pointerEvents = "auto";
+                }
+                alert("Something went wrong. Please try again.");
+            });
         });
     }
 };
-dummyContactForm();
+contactFormHandler();
 
 // CERTIFICATE LIGHTBOX MODAL HANDLER
 
