@@ -462,7 +462,7 @@ const contactFormHandler = () => {
 
             const formData = new FormData(form);
 
-            fetch("https://formsubmit.co/ajax/suryasurya2882002@gmail.com", {
+            fetch("https://formsubmit.co/ajax/rsurya.hello@gmail.com", {
                 method: "POST",
                 headers: { 
                     'Accept': 'application/json'
